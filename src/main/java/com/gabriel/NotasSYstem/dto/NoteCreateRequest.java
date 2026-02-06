@@ -10,7 +10,7 @@ public class NoteCreateRequest {
     @NotBlank(message = "é obrigatorio passar um conteudo")
     private String content;
 
-    @NotNull
+
     private Integer prioridade;
 
 
