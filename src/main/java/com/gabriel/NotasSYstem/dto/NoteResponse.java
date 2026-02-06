@@ -1,5 +1,7 @@
 package com.gabriel.NotasSYstem.dto;
 
+import com.gabriel.NotasSYstem.enums.NoteStatus;
+
 import java.time.LocalDateTime;
 
 public class NoteResponse {
@@ -7,7 +9,7 @@ public class NoteResponse {
     private Long id;
     private String title;
     private String content;
-    private String status;
+    private NoteStatus status;
     private Integer prioridade;
     private LocalDateTime createdAt;
 
@@ -36,11 +38,11 @@ public class NoteResponse {
         this.content = content;
     }
 
-    public String getStatus() {
+    public NoteStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(NoteStatus status) {
         this.status = status;
     }
 

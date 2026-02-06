@@ -1,5 +1,6 @@
 package com.gabriel.NotasSYstem.model;
 
+import com.gabriel.NotasSYstem.enums.NoteStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,13 +13,16 @@ public class Note {
     private Long id;
     private String title;
     private String content;
-    private String status = "pendente";
+
+    @Enumerated(EnumType.STRING)
+    private NoteStatus status;
     private Integer prioridade;
     private LocalDateTime createdAt;
     private LocalDateTime conclusionAt;
 
     public Note(){
         this.createdAt = LocalDateTime.now();
+        this.status = NoteStatus.PENDENTE;
     }
 
     public Long getId() {
@@ -45,11 +49,11 @@ public class Note {
         this.content = content;
     }
 
-    public String getStatus() {
+    public NoteStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(NoteStatus status) {
         this.status = status;
     }
 
