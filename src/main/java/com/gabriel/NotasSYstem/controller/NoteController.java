@@ -2,6 +2,8 @@ package com.gabriel.NotasSYstem.controller;
 
 import com.gabriel.NotasSYstem.dto.NoteCreateRequest;
 import com.gabriel.NotasSYstem.dto.NoteResponse;
+import com.gabriel.NotasSYstem.dto.UpdateStatusNote;
+import com.gabriel.NotasSYstem.model.Note;
 import com.gabriel.NotasSYstem.service.NoteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -46,5 +48,12 @@ public class NoteController {
         service.deleteNote(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<NoteResponse> updateStatus(@PathVariable Long id, @RequestBody @Valid UpdateStatusNote dados){
+        NoteResponse note = service.updateStatus(id, dados);
+
+        return ResponseEntity.ok(note);
     }
 }

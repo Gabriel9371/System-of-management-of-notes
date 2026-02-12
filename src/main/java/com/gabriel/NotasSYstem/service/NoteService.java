@@ -54,6 +54,15 @@ public class NoteService {
                 () -> new NoteNotFoundException(id)
         );
 
+        if(note.getStatus() == NoteStatus.FAZENDO){
+            throw new RuntimeException("Não é permitido deletar uma nota que esta sendo feita");
+        }
+
+        if (note.getStatus() == NoteStatus.CONCLUIDA){
+            throw new RuntimeException("Não é permitido deletar uma nota ja concluida");
+
+        }
+
         repository.deleteById(id);
     }
 

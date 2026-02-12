@@ -1,13 +1,12 @@
 package com.gabriel.NotasSYstem.dto;
 
 import com.gabriel.NotasSYstem.enums.NoteStatus;
-import com.gabriel.NotasSYstem.model.Note;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UpdateStatusNote {
 
 
-    @NotBlank
+    @NotNull
     private NoteStatus status;
 
     public NoteStatus getStatus() {
