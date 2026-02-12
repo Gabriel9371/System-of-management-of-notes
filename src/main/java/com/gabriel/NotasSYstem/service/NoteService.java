@@ -9,6 +9,9 @@ import com.gabriel.NotasSYstem.exception.NoteNotFoundException;
 import com.gabriel.NotasSYstem.mapper.NoteMapper;
 import com.gabriel.NotasSYstem.model.Note;
 import com.gabriel.NotasSYstem.repository.NoteRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +26,11 @@ public class NoteService {
         this.mapper = mapper;
     }
 
-    public List<NoteResponse> getall(){
-        List<Note> notes = repository.findAll();
-        List<NoteResponse> toListNote = mapper.toResponseList(notes);
 
-        return toListNote;
+    public Page<NoteResponse> getAll(Pageable pageable){
+        Page<Note> notesPage = repository.findAll(pageable);
+
+        return notesPage.map(mapper::toResponse);
     }
 
     public NoteResponse listById(Long id){

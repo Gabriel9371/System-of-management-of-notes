@@ -3,9 +3,11 @@ package com.gabriel.NotasSYstem.controller;
 import com.gabriel.NotasSYstem.dto.NoteCreateRequest;
 import com.gabriel.NotasSYstem.dto.NoteResponse;
 import com.gabriel.NotasSYstem.dto.UpdateStatusNote;
-import com.gabriel.NotasSYstem.model.Note;
 import com.gabriel.NotasSYstem.service.NoteService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +25,8 @@ public class NoteController {
 
 
     @GetMapping
-    public ResponseEntity<List<NoteResponse>> listAllNotes(){
-        List<NoteResponse> allNotes = service.getall();
+    public ResponseEntity<Page<NoteResponse>> listAllNotes(Pageable pageable){
+        Page<NoteResponse> allNotes = service.getAll(pageable);
 
         return ResponseEntity.ok(allNotes);
     }
